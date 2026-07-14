@@ -1,0 +1,30 @@
+{
+  "name": "@dosson-architecture-visualizer/cli",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dosson CLI — analyze repositories from the terminal",
+  "bin": {
+    "dosson": "./dist/bin.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@dosson-architecture-visualizer/core": "workspace:*",
+    "@dosson-architecture-visualizer/graph": "workspace:*",
+    "@dosson-architecture-visualizer/report-generator": "workspace:*",
+    "@dosson-architecture-visualizer/shared": "workspace:*",
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

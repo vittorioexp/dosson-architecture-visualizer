@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { analyzeRepository } from '@dosson-architecture-visualizer/analyzers';
+import { analyzeRepository } from '@dosson-architecture-visualizer/core';
 import type { AnalysisOutput } from '@dosson-architecture-visualizer/shared';
 import { AiService } from '../../infrastructure/ai/ai.service';
 import { createChildLogger } from '../../infrastructure/logging/logger';

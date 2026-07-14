@@ -45,3 +45,9 @@ export interface AnalyzerResult {
   result: PartialAnalysisResult;
   error?: string;
 }
+
+export interface DossonPlugin {
+  name: string;
+  version: string;
+  analyzers?: IAnalyzer[];
+}

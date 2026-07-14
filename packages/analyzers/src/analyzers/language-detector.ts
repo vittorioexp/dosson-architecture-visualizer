@@ -3,7 +3,7 @@ import {
   LANGUAGE_DISPLAY_NAMES,
   type SupportedLanguage,
 } from '@dosson-architecture-visualizer/shared';
-import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '../core/types';
+import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/plugin-sdk';
 
 export class LanguageDetector implements IAnalyzer {
   readonly name = 'LanguageDetector';

@@ -1,4 +1,4 @@
-import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '../core/types';
+import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/plugin-sdk';
 
 const CI_CD_PATTERNS: Array<{ name: string; patterns: RegExp[] }> = [
   { name: 'GitHub Actions', patterns: [/^\.github\/workflows\//] },

@@ -41,6 +41,23 @@ export function toJson(graph: GraphData): string {
   return JSON.stringify(graph, null, 2);
 }
 
+export function toGraphviz(graph: GraphData): string {
+  const lines: string[] = ['digraph G {', '  rankdir=LR;', '  node [shape=box];'];
+
+  for (const node of graph.nodes) {
+    const label = node.label.replace(/"/g, '\\"');
+    lines.push(`  "${node.id}" [label="${label}"];`);
+  }
+
+  for (const edge of graph.edges) {
+    const label = edge.label || edge.type;
+    lines.push(`  "${edge.source}" -> "${edge.target}" [label="${label}"];`);
+  }
+
+  lines.push('}');
+  return lines.join('\n');
+}
+
 function sanitizeId(id: string): string {
   return id.replace(/[^a-zA-Z0-9_]/g, '_');
 }

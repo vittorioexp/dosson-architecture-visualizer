@@ -48,12 +48,29 @@ Enterprise SaaS platform that automatically analyzes software repositories and g
 dosson-architecture-visualizer/
 ├── apps/
 │   ├── api/          # NestJS REST API (Clean Architecture)
-│   └── web/          # Next.js 15 frontend
+│   ├── web/          # Next.js 15 dashboard (@dosson-architecture-visualizer/dashboard)
+│   └── website/      # Marketing landing page
 ├── packages/
 │   ├── shared/       # Shared types and constants
-│   └── analyzers/    # Pluggable analyzer framework
+│   ├── plugin-sdk/   # IAnalyzer, AnalyzerRegistry, plugin contracts
+│   ├── parser/       # Safe file indexing and analysis context
+│   ├── analyzers/    # Built-in analyzer implementations (16 detectors)
+│   ├── graph/        # GraphBuilder and exporters (Mermaid, PlantUML, Graphviz)
+│   ├── core/         # UI-agnostic analysis orchestration engine
+│   ├── report-generator/  # Standalone HTML reports
+│   └── cli/          # `dosson` CLI (analyze, graph, report, export, doctor)
 ├── docker-compose.yml
 └── Dockerfile
+```
+
+### Dependency Graph
+
+```
+shared → plugin-sdk → parser
+shared → analyzers (builtins)
+analyzers + parser + graph + plugin-sdk → core
+core + graph + report-generator → cli
+core → api
 ```
 
 ### Design Decisions
@@ -62,7 +79,7 @@ dosson-architecture-visualizer/
 Analyzers run as pure TypeScript with no framework dependencies, enabling isolated testing and potential worker extraction. Shared types enforce contracts between API and frontend.
 
 **Pluggable Analyzer Framework**
-Each analyzer implements `IAnalyzer` with `name`, `priority`, and `analyze(context)`. The `AnalyzerRegistry` runs them in priority order and merges partial results. New detectors can be added without modifying existing code (Open/Closed Principle).
+Each analyzer implements `IAnalyzer` from `@dosson-architecture-visualizer/plugin-sdk`. The `AnalyzerRegistry` runs them in priority order and merges partial results. The **core engine** (`@dosson-architecture-visualizer/core`) orchestrates analysis without UI dependencies — usable from CLI, API, or custom integrations.
 
 **Clean Architecture (API)**
 - `domain/` — interfaces and contracts
@@ -126,7 +143,8 @@ This will:
 pnpm dev
 ```
 
-- **Frontend**: http://localhost:3000
+- **Frontend (Dashboard)**: http://localhost:3000
+- **Website**: http://localhost:3001
 - **API**: http://localhost:4000
 - **API Docs**: http://localhost:4000/api/docs
 - **MinIO Console**: http://localhost:9001
@@ -138,6 +156,22 @@ After seeding, copy the session token from the terminal output and paste it in *
 ```bash
 curl -H "Authorization: Bearer <token>" http://localhost:4000/api/v1/projects
 ```
+
+## CLI
+
+Analyze any repository locally without the dashboard:
+
+```bash
+# Build CLI first (or use root shortcut after build)
+pnpm build
+pnpm dosson doctor
+pnpm dosson analyze .
+pnpm dosson graph . --format mermaid
+pnpm dosson report . --output report.html
+pnpm dosson export . --type architecture --format json
+```
+
+See [docs/CLI.md](docs/CLI.md) for full command reference.
 
 ## Docker
 
@@ -218,7 +252,7 @@ pnpm test:e2e
 ### Adding a New Analyzer
 
 ```typescript
-import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/analyzers';
+import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/plugin-sdk';
 
 export class MyAnalyzer implements IAnalyzer {
   readonly name = 'MyAnalyzer';
@@ -226,13 +260,14 @@ export class MyAnalyzer implements IAnalyzer {
   readonly description = 'Detects something specific';
 
   async analyze(context: AnalysisContext): Promise<PartialAnalysisResult> {
-    // Your detection logic
     return { /* partial result */ };
   }
 }
 ```
 
-Register in `packages/analyzers/src/index.ts`.
+Register in `packages/core/src/default-registry.ts` or load via the plugin SDK.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [ARCHITECTURE.md](ARCHITECTURE.md) for details.
 
 ## License
 

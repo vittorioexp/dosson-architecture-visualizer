@@ -1,4 +1,4 @@
-import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '../core/types';
+import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/plugin-sdk';
 
 const DB_INDICATORS: Array<{ type: string; patterns: RegExp[]; orm?: string }> = [
   { type: 'PostgreSQL', patterns: [/postgres(ql)?/i, /pg\./i, /DATABASE_URL.*postgres/i], orm: 'Prisma' },

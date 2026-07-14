@@ -14,12 +14,14 @@
     "db:generate": "pnpm --filter @dosson-architecture-visualizer/api db:generate",
     "db:migrate": "pnpm --filter @dosson-architecture-visualizer/api db:migrate",
     "db:seed": "pnpm --filter @dosson-architecture-visualizer/api db:seed",
+    "dosson": "pnpm --filter @dosson-architecture-visualizer/cli exec node dist/bin.js",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "setup": "pnpm install && pnpm docker:up && pnpm db:generate && pnpm db:migrate && pnpm db:seed",
     "prepare": "husky"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.10",
     "@types/node": "^22.10.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",

@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: archviz
+          POSTGRES_PASSWORD: archviz_secret
+          POSTGRES_DB: architecture_visualizer
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U archviz"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --ignore-scripts
+
+      - name: Generate Prisma client
+        run: pnpm --filter @dosson-architecture-visualizer/api exec prisma generate
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test
+
+      - name: CLI smoke test
+        run: pnpm --filter @dosson-architecture-visualizer/cli exec node dist/bin.js doctor

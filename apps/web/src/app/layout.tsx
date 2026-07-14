@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-geist-sans' });
 
 export const metadata: Metadata = {
-  title: 'Dosson Architecture Visualizer',
-  description: 'Enterprise SaaS for automated software architecture visualization by Dosson',
+  title: 'Dosson',
+  description: 'Architecture analysis for modern codebases — part of Dosson Architecture Visualizer',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

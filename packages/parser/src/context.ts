@@ -1,6 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import type { AnalysisContext, IndexedFile, PackageJson } from './types';
+import type { AnalysisContext, IndexedFile, PackageJson } from '@dosson-architecture-visualizer/plugin-sdk';
+
+export interface ScanOptions {
+  maxFileSize?: number;
+  ignoredDirs?: Set<string>;
+}
 
 const IGNORED_DIRS = new Set([
   'node_modules',

@@ -2,21 +2,22 @@
   "name": "@dosson-architecture-visualizer/analyzers",
   "version": "1.0.0",
   "private": true,
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/builtins.js",
+  "types": "./dist/builtins.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/builtins.d.ts",
+      "default": "./dist/builtins.js"
     }
   },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
+    "@dosson-architecture-visualizer/plugin-sdk": "workspace:*",
     "@dosson-architecture-visualizer/shared": "workspace:*"
   },
   "devDependencies": {

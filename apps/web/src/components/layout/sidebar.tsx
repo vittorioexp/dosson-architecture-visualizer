@@ -32,7 +32,6 @@ export function Sidebar({ onCommandPalette }: SidebarProps) {
         </div>
         <div>
           <h1 className="text-sm font-bold tracking-tight">Dosson</h1>
-          <p className="text-[10px] text-muted-foreground">Architecture Visualizer</p>
         </div>
       </div>
 

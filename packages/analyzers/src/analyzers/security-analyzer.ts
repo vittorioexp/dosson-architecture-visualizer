@@ -1,4 +1,4 @@
-import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '../core/types';
+import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/plugin-sdk';
 import type { SecurityFinding } from '@dosson-architecture-visualizer/shared';
 
 const SECURITY_PATTERNS: Array<{

@@ -1,5 +1,5 @@
 {
-  "name": "@dosson-architecture-visualizer/web",
+  "name": "@dosson-architecture-visualizer/dashboard",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "test:e2e": "playwright test"
   },
   "dependencies": {

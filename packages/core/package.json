@@ -1,0 +1,30 @@
+{
+  "name": "@dosson-architecture-visualizer/core",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dosson core engine — analysis orchestration (UI-agnostic)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@dosson-architecture-visualizer/analyzers": "workspace:*",
+    "@dosson-architecture-visualizer/graph": "workspace:*",
+    "@dosson-architecture-visualizer/parser": "workspace:*",
+    "@dosson-architecture-visualizer/plugin-sdk": "workspace:*",
+    "@dosson-architecture-visualizer/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

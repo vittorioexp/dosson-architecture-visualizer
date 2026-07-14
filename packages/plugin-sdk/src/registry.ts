@@ -1,5 +1,4 @@
-import type { IAnalyzer, AnalyzerResult, PartialAnalysisResult } from './types';
-import type { AnalysisContext } from './types';
+import type { IAnalyzer, AnalyzerResult, PartialAnalysisResult, AnalysisContext } from './types';
 
 export class AnalyzerRegistry {
   private analyzers: Map<string, IAnalyzer> = new Map();
@@ -31,11 +30,7 @@ export class AnalyzerRegistry {
       const start = Date.now();
       try {
         const result = await analyzer.analyze(context);
-        results.push({
-          analyzer: analyzer.name,
-          duration: Date.now() - start,
-          result,
-        });
+        results.push({ analyzer: analyzer.name, duration: Date.now() - start, result });
         Object.assign(merged, result);
       } catch (error) {
         results.push({
@@ -49,11 +44,4 @@ export class AnalyzerRegistry {
 
     return { results, merged };
   }
-}
-
-export function createDefaultRegistry(): AnalyzerRegistry {
-  const registry = new AnalyzerRegistry();
-
-  // Lazy imports to avoid circular deps - we'll register in index.ts
-  return registry;
 }

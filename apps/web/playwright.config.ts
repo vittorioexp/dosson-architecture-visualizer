@@ -16,7 +16,7 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: 'pnpm --filter @dosson-architecture-visualizer/web dev',
+      command: 'pnpm --filter @dosson-architecture-visualizer/dashboard dev',
       url: 'http://localhost:3000',
       reuseExistingServer: !process.env.CI,
     },

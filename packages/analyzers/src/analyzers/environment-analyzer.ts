@@ -1,4 +1,4 @@
-import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '../core/types';
+import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/plugin-sdk';
 import type { DetectedEnvVar } from '@dosson-architecture-visualizer/shared';
 
 export class EnvironmentAnalyzer implements IAnalyzer {

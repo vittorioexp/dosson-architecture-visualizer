@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { toMermaid, toPlantUml, toJson } from '@dosson-architecture-visualizer/analyzers';
+import { toMermaid, toPlantUml, toJson } from '@dosson-architecture-visualizer/graph';
 import type { AnalysisDetailResponse, GraphResponse, GraphType } from '@dosson-architecture-visualizer/shared';
 import { PrismaService } from '../../infrastructure/database/prisma.service';
 

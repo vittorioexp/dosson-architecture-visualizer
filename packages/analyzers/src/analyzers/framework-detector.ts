@@ -3,7 +3,7 @@ import {
   FRAMEWORK_INDICATORS,
   type SupportedFramework,
 } from '@dosson-architecture-visualizer/shared';
-import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '../core/types';
+import type { IAnalyzer, AnalysisContext, PartialAnalysisResult } from '@dosson-architecture-visualizer/plugin-sdk';
 
 export class FrameworkDetector implements IAnalyzer {
   readonly name = 'FrameworkDetector';
