@@ -33,7 +33,7 @@
     "@opentelemetry/auto-instrumentations-node": "^0.54.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.57.0",
     "@opentelemetry/sdk-node": "^0.57.0",
-    "@prisma/client": "^6.1.0",
+    "@prisma/client": "^7.8.0",
     "adm-zip": "^0.5.16",
     "bullmq": "^5.34.3",
     "class-transformer": "^0.5.1",
