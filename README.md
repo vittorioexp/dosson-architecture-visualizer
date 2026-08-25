@@ -2,12 +2,6 @@
 
 Enterprise SaaS platform that automatically analyzes software repositories and generates interactive architecture visualizations with AI-powered insights.
 
-![Dosson Architecture Visualizer Dashboard](docs/screenshots/dashboard.png)
-![Interactive Graph View](docs/screenshots/graph-view.png)
-![Analysis Dashboard](docs/screenshots/analysis-dashboard.png)
-
-> Screenshot placeholders — capture after running the application locally.
-
 ## Features
 
 ### Repository Import
